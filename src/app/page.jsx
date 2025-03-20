@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <main style={{ textAlign: 'center', padding: '50px' }}>
-      <img src="/logo.png" alt="Logo" style={{ width: '100px', marginBottom: '20px' }} />
+      <img src="/dragon-logo.png" alt="Logo" style={{ width: '100px', marginBottom: '20px' }} />
       <h1>Dragon Flash Wallet</h1>
       <button onClick={connectWallet}>Connect Wallet</button>
       {provider && address && <WBTCBalance provider={provider} address={address} />}
