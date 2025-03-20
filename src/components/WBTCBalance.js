@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import erc20ABI from '../utils/erc20ABI.json';
 
-const WBTC_ADDRESS = '0x25C233589BF8497B6281be83fEd127933D82A9d5'; // WBTC on BSC
+const WBTC_ADDRESS = '0x25C233589BF8497B6281be83fEd127933D82A9d5'; // BSC WBTC
 
 export default function WBTCBalance({ provider, address }) {
   const [balance, setBalance] = useState(null);
