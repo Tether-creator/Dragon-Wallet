@@ -57,6 +57,8 @@ export default function Home() {
         <div style={{ marginTop: '30px' }}>
           <p>Wallet: {walletAddress}</p>
           <p>ETH Balance: {balance}</p>
+          <p>WBTC Balance: {balance}</p>
+          <p>OTK Balance: {balance}</p>
         </div>
       )}
     </main>
