@@ -1,54 +1,64 @@
-// /components/WBTCBalance.jsx
-
-'use client';
-
-import Image from 'next/image';
-import styles from './page.module.css';
-import ConnectWallet from '../components/ConnectWallet';
-import WBTCBalance from '../components/WBTCBalance';
+'use client'
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 
-// WBTC Contract on BSC
-const WBTC_ADDRESS = '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c'; // WBTC on BSC
-const ERC20_ABI = [
-  "function balanceOf(address owner) view returns (uint256)",
-  "function decimals() view returns (uint8)"
-];
+export default function Home() {
+  const [walletAddress, setWalletAddress] = useState('');
+  const [balance, setBalance] = useState('');
+  const [isConnected, setIsConnected] = useState(false);
 
-export default function WBTCBalance({ walletAddress }) {
-  const [balance, setBalance] = useState(null);
+  const connectWallet = async () => {
+    if (typeof window.ethereum !== 'undefined') {
+      try {
+        const [address] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        setWalletAddress(address);
+        setIsConnected(true);
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      alert('MetaMask not detected');
+    }
+  };
+
+  const getBalance = async (address) => {
+    if (!address) return;
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const balance = await provider.getBalance(address);
+    setBalance(ethers.formatEther(balance));
+  };
 
   useEffect(() => {
-    const fetchBalance = async () => {
-      if (!walletAddress) return;
-
-      try {
-        const provider = new ethers.BrowserProvider(window.ethereum);
-        const contract = new ethers.Contract(WBTC_ADDRESS, ERC20_ABI, await provider);
-        const decimals = await contract.decimals();
-        const rawBalance = await contract.balanceOf(walletAddress);
-        const formatted = ethers.formatUnits(rawBalance, decimals);
-        setBalance(formatted);
-      } catch (err) {
-        console.error('Failed to fetch WBTC balance:', err);
-      }
-    };
-
-    fetchBalance();
+    if (walletAddress) {
+      getBalance(walletAddress);
+    }
   }, [walletAddress]);
 
   return (
-    <div style={{ marginTop: '20px', fontSize: '18px' }}>
-      {walletAddress ? (
-        balance !== null ? (
-          <p>WBTC Balance: {balance}</p>
-        ) : (
-          <p>Loading WBTC balance...</p>
-        )
-      ) : (
-        <p>Connect your wallet to see WBTC balance.</p>
+    <main style={{ textAlign: 'center', marginTop: '80px' }}>
+      <img src="/dragon-logo.png" alt="Dragon Flash Logo" style={{ width: '120px', marginBottom: '20px' }} />
+      <h1>Dragon Flash Wallet</h1>
+      <button
+        onClick={connectWallet}
+        style={{
+          padding: '12px 25px',
+          fontSize: '16px',
+          marginTop: '20px',
+          cursor: 'pointer',
+          backgroundColor: '#ff9900',
+          border: 'none',
+          borderRadius: '6px',
+          color: '#fff'
+        }}
+      >
+        {isConnected ? 'Wallet Connected' : 'Connect Wallet'}
+      </button>
+      {isConnected && (
+        <div style={{ marginTop: '30px' }}>
+          <p>Wallet: {walletAddress}</p>
+          <p>ETH Balance: {balance}</p>
+        </div>
       )}
-    </div>
+    </main>
   );
 }
