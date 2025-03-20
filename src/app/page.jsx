@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <main style={{ textAlign: 'center', marginTop: '80px' }}>
-      <img src="/logo.png" alt="Dragon Flash Logo" style={{ width: '120px', marginBottom: '20px' }} />
+      <img src="/dragon-logo.png" alt="Dragon Flash Logo" style={{ width: '120px', marginBottom: '20px' }} />
       <h1>Dragon Flash Wallet</h1>
       <button
         onClick={connectWallet}
