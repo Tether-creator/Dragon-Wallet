@@ -1,4 +1,9 @@
 'use client'
+
+import Image from 'next/image';
+import styles from './page.module.css';
+import ConnectWallet from '../components/ConnectWallet';
+import WBTCBalance from '../components/WBTCBalance';
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 
