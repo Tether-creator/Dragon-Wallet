@@ -1,6 +1,16 @@
 'use client'
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
+import TokenList from '@/components/TokenList'
+
+export default function Home() {
+  return (
+    <main>
+      <h1>Dragon Flash Wallet</h1>
+      <TokenList />
+    </main>
+  )
+}
 
 export default function Home() {
   const [walletAddress, setWalletAddress] = useState('');
