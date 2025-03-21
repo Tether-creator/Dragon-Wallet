@@ -45,6 +45,7 @@ export default function Home() {
         style={{ width: '120px', marginBottom: '20px' }}
       />
       <h1>Dragon Flash Wallet</h1>
+
       <button
         onClick={connectWallet}
         style={{
@@ -60,6 +61,7 @@ export default function Home() {
       >
         {isConnected ? 'Wallet Connected' : 'Connect Wallet'}
       </button>
+
       {isConnected && (
         <div style={{ marginTop: '30px' }}>
           <p>Wallet: {walletAddress}</p>
@@ -67,23 +69,24 @@ export default function Home() {
         </div>
       )}
 
-      {/* Token Display (Name + Symbol Only) */}
+      {/* Token Display (Only Name & Symbol with spacing) */}
       <div style={{ marginTop: '50px' }}>
         <h2>Available Tokens</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
           {tokenData.map((token, index) => (
             <div
               key={index}
               style={{
-                backgroundColor: '#f5f5f5',
-                padding: '10px 20px',
-                borderRadius: '8px',
-                width: '260px',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                textAlign: 'left'
+                backgroundColor: '#f0f0f0',
+                padding: '12px 20px',
+                borderRadius: '10px',
+                width: '270px',
+                boxShadow: '0 3px 6px rgba(0,0,0,0.1)',
+                fontSize: '15px',
+                fontWeight: '500'
               }}
             >
-              <strong>{token.name}</strong> — {token.symbol}
+              <span>{token.name}</span> — <span>{token.symbol}</span>
             </div>
           ))}
         </div>
