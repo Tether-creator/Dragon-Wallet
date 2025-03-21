@@ -1,12 +1,12 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import tokenData from '../components/tokenList.json';
 
 export default function Home() {
   const [walletAddress, setWalletAddress] = useState('');
   const [balance, setBalance] = useState('');
   const [isConnected, setIsConnected] = useState(false);
+  const [tokenData, setTokenData] = useState([]);
 
   const connectWallet = async () => {
     if (typeof window.ethereum !== 'undefined') {
@@ -36,6 +36,21 @@ export default function Home() {
       getBalance(walletAddress);
     }
   }, [walletAddress]);
+
+  useEffect(() => {
+    // Fetch token list from /public folder
+    const fetchTokens = async () => {
+      try {
+        const res = await fetch('/tokenList.json');
+        const data = await res.json();
+        setTokenData(data);
+      } catch (error) {
+        console.error('Failed to load token list:', error);
+      }
+    };
+
+    fetchTokens();
+  }, []);
 
   return (
     <main style={{ textAlign: 'center', marginTop: '80px' }}>
