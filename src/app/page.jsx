@@ -9,7 +9,7 @@ export default function Home() {
   const [tokenData, setTokenData] = useState([]);
 
   const connectWallet = async () => {
-    if (typeof window.ethereum !== 'undefined') {
+    if (typeof window !== 'undefined' && window.ethereum) {
       try {
         const [address] = await window.ethereum.request({
           method: 'eth_requestAccounts',
@@ -92,13 +92,51 @@ export default function Home() {
           }}
         >
           {tokenData.map((token, index) => (
-            <div key={index} className="token-box">
+            <div
+              key={index}
+              className="token-box"
+              style={{
+                backgroundColor: '#f0f0f0',
+                padding: '12px 20px',
+                borderRadius: '10px',
+                width: '320px',
+                boxShadow: '0 3px 6px rgba(0,0,0,0.1)',
+                fontSize: '15px',
+                fontWeight: '500',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                transition: 'background-color 0.2s ease',
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor = '#e2e2e2')
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor = '#f0f0f0')
+              }
+            >
               <span>
                 {token.name} — {token.symbol}
               </span>
               <button
                 className="buy-button"
                 onClick={() => handleBuy(token.symbol)}
+                style={{
+                  padding: '6px 12px',
+                  fontSize: '14px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.2s ease',
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.backgroundColor = '#0056b3')
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.backgroundColor = '#007bff')
+                }
               >
                 Buy
               </button>
