@@ -12,7 +12,7 @@ export default function Home() {
     if (typeof window.ethereum !== 'undefined') {
       try {
         const [address] = await window.ethereum.request({
-          method: 'eth_requestAccounts'
+          method: 'eth_requestAccounts',
         });
         setWalletAddress(address);
         setIsConnected(true);
@@ -45,7 +45,6 @@ export default function Home() {
         style={{ width: '120px', marginBottom: '20px' }}
       />
       <h1>Dragon Flash Wallet</h1>
-
       <button
         onClick={connectWallet}
         style={{
@@ -56,7 +55,7 @@ export default function Home() {
           backgroundColor: '#ff9900',
           border: 'none',
           borderRadius: '6px',
-          color: '#fff'
+          color: '#fff',
         }}
       >
         {isConnected ? 'Wallet Connected' : 'Connect Wallet'}
@@ -72,7 +71,14 @@ export default function Home() {
       {/* Token Display (Only Name & Symbol with spacing) */}
       <div style={{ marginTop: '50px' }}>
         <h2>Available Tokens</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+            alignItems: 'center',
+          }}
+        >
           {tokenData.map((token, index) => (
             <div
               key={index}
@@ -83,7 +89,7 @@ export default function Home() {
                 width: '270px',
                 boxShadow: '0 3px 6px rgba(0,0,0,0.1)',
                 fontSize: '15px',
-                fontWeight: '500'
+                fontWeight: '500',
               }}
             >
               <span>{token.name}</span> — <span>{token.symbol}</span>
