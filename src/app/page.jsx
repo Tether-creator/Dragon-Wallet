@@ -1,7 +1,8 @@
-'use client'
-import { useEffect, useState } from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-}
+import TokenList from '../components/TokenList';
 
 export default function Home() {
   const [walletAddress, setWalletAddress] = useState('');
@@ -11,7 +12,9 @@ export default function Home() {
   const connectWallet = async () => {
     if (typeof window.ethereum !== 'undefined') {
       try {
-        const [address] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const [address] = await window.ethereum.request({
+          method: 'eth_requestAccounts'
+        });
         setWalletAddress(address);
         setIsConnected(true);
       } catch (err) {
@@ -37,7 +40,11 @@ export default function Home() {
 
   return (
     <main style={{ textAlign: 'center', marginTop: '80px' }}>
-      <img src="dragon-logo.png" alt="Dragon Flash Logo" style={{ width: '120px', marginBottom: '20px' }} />
+      <img
+        src="dragon-logo.png"
+        alt="Dragon Flash Logo"
+        style={{ width: '120px', marginBottom: '20px' }}
+      />
       <h1>Dragon Flash Wallet</h1>
       <button
         onClick={connectWallet}
@@ -54,12 +61,18 @@ export default function Home() {
       >
         {isConnected ? 'Wallet Connected' : 'Connect Wallet'}
       </button>
+
       {isConnected && (
         <div style={{ marginTop: '30px' }}>
           <p>Wallet: {walletAddress}</p>
           <p>ETH Balance: {balance}</p>
         </div>
       )}
+
+      {/* Add Token List Below */}
+      <div style={{ marginTop: '40px' }}>
+        <TokenList />
+      </div>
     </main>
   );
 }
