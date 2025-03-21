@@ -1,110 +1,44 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import { ethers } from 'ethers';
+'use client'
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 export default function Home() {
-  const [walletAddress, setWalletAddress] = useState('');
-  const [balance, setBalance] = useState('');
-  const [isConnected, setIsConnected] = useState(false);
-  const [tokenData, setTokenData] = useState([]);
-
-  const connectWallet = async () => {
-    if (typeof window.ethereum !== 'undefined') {
-      try {
-        const [address] = await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-        setWalletAddress(address);
-        setIsConnected(true);
-      } catch (err) {
-        console.error(err);
-      }
-    } else {
-      alert('MetaMask not detected');
-    }
-  };
-
-  const getBalance = async (address) => {
-    if (!address) return;
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const balance = await provider.getBalance(address);
-    setBalance(ethers.formatEther(balance));
-  };
+  const [tokens, setTokens] = useState([])
 
   useEffect(() => {
     fetch('/data/tokenList.json')
       .then((res) => res.json())
-      .then((data) => setTokenData(data))
-      .catch((err) => console.error('Error loading token list:', err));
-  }, []);
-
-  useEffect(() => {
-    if (walletAddress) {
-      getBalance(walletAddress);
-    }
-  }, [walletAddress]);
-
-  const handleBuy = (symbol) => {
-    alert(`Buy ${symbol} clicked!`);
-  };
+      .then((data) => setTokens(data))
+  }, [])
 
   return (
-    <main style={{ textAlign: 'center', marginTop: '80px' }}>
-      <img
-        src="/dragon-logo.png"
-        alt="Dragon Flash Logo"
-        style={{ width: '120px', marginBottom: '20px' }}
-      />
-      <h1>Dragon Flash Wallet</h1>
-
-      <button
-        onClick={connectWallet}
-        style={{
-          padding: '12px 25px',
-          fontSize: '16px',
-          marginTop: '20px',
-          cursor: 'pointer',
-          backgroundColor: '#ff9900',
-          border: 'none',
-          borderRadius: '6px',
-          color: '#fff',
-        }}
-      >
-        {isConnected ? 'Wallet Connected' : 'Connect Wallet'}
-      </button>
-
-      {isConnected && (
-        <div style={{ marginTop: '30px' }}>
-          <p>Wallet: {walletAddress}</p>
-          <p>ETH Balance: {balance}</p>
-        </div>
-      )}
-
-      <div style={{ marginTop: '50px' }}>
-        <h2>Available Tokens</h2>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            alignItems: 'center',
-          }}
-        >
-          {tokenData.map((token, index) => (
-            <div key={index} className="token-box">
-              <span>
-                {token.name} — {token.symbol}
-              </span>
-              <button
-                className="buy-button"
-                onClick={() => handleBuy(token.symbol)}
-              >
+    <main className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white p-4">
+      <div className="flex justify-center">
+        <Image
+          src="/dragon-logo.png"
+          alt="Dragon Flash Logo"
+          width={100}
+          height={100}
+        />
+      </div>
+      <h1 className="text-center text-3xl font-bold mb-8 mt-4">Dragon Flash Wallet</h1>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {tokens.map((token, index) => (
+          <div
+            key={index}
+            className="bg-white/10 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300"
+          >
+            <h2 className="text-xl font-semibold">{token.name}</h2>
+            <p className="text-sm text-gray-300">Symbol: {token.symbol}</p>
+            <div className="mt-4">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 w-full">
                 Buy
               </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </main>
-  );
+  )
 }
