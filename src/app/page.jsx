@@ -44,49 +44,20 @@ export default function Home() {
     }
   }, [walletAddress]);
 
+  const handleBuy = (symbol) => {
+    alert(Buy ${symbol} clicked!);
+    // You can later connect this to a real DEX swap
+  };
+
   return (
     <main style={{ textAlign: 'center', marginTop: '80px' }}>
-      <style>{
-        .token-box {
-          background-color: #f0f0f0;
-          padding: 12px 20px;
-          border-radius: 10px;
-          width: 320px;
-          box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-          font-size: 15px;
-          font-weight: 500;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          transition: background-color 0.2s ease;
-        }
-
-        .token-box:hover {
-          background-color: #e2e2e2;
-        }
-
-        .buy-button {
-          padding: 6px 12px;
-          font-size: 14px;
-          background-color: #007bff;
-          color: white;
-          border: none;
-          border-radius: 6px;
-          cursor: pointer;
-          transition: background-color 0.2s ease;
-        }
-
-        .buy-button:hover {
-          background-color: #0056b3;
-        }
-      }</style>
-
       <img
         src="dragon-logo.png"
         alt="Dragon Flash Logo"
         style={{ width: '120px', marginBottom: '20px' }}
       />
       <h1>Dragon Flash Wallet</h1>
+
       <button
         onClick={connectWallet}
         style={{
@@ -121,11 +92,51 @@ export default function Home() {
           }}
         >
           {tokenData.map((token, index) => (
-            <div className="token-box" key={index}>
-              <span>{token.name} — {token.symbol}</span>
+            <div
+              key={index}
+              className="token-box"
+              style={{
+                backgroundColor: '#f0f0f0',
+                padding: '12px 20px',
+                borderRadius: '10px',
+                width: '320px',
+                boxShadow: '0 3px 6px rgba(0,0,0,0.1)',
+                fontSize: '15px',
+                fontWeight: '500',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                transition: 'background-color 0.2s ease',
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor = '#e2e2e2')
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor = '#f0f0f0')
+              }
+            >
+              <span>
+                {token.name} — {token.symbol}
+              </span>
               <button
                 className="buy-button"
-                onClick={() => alert(Buy ${token.symbol})}
+                onClick={() => handleBuy(token.symbol)}
+                style={{
+                  padding: '6px 12px',
+                  fontSize: '14px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.2s ease',
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.backgroundColor = '#0056b3')
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.backgroundColor = '#007bff')
+                }
               >
                 Buy
               </button>
