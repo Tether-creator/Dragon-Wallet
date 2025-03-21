@@ -2,81 +2,97 @@
   {
     "name": "Wrapped BTC",
     "symbol": "WBTC",
-    "address": "0x25C233589BF8497B6281be83fEd127933D82A9d5"
+    "address": "0x25C233589BF8497B6281be83fEd127933D82A9d5",
+    "decimals": 18
   },
   {
     "name": "Tether",
     "symbol": "USDT",
-    "address": "0x995d444bD5D09cAB0392010d5D3563038d0EB066"
+    "address": "0x995d444bD5D09cAB0392010d5D3563038d0EB066",
+    "decimals": 18
   },
   {
     "name": "Tether USDT",
     "symbol": "USDT",
-    "address": "0x592a8F4243f03a8631c2733A4D7ac09De51995E2"
+    "address": "0x592a8F4243f03a8631c2733A4D7ac09De51995E2",
+    "decimals": 18
   },
   {
     "name": "Tether",
     "symbol": "USDT",
-    "address": "0x97e2F10F22B1b519B22Ab56D61E805f1F1dD86Ac"
+    "address": "0x97e2F10F22B1b519B22Ab56D61E805f1F1dD86Ac",
+    "decimals": 18
   },
   {
     "name": "USDTBEP-20",
     "symbol": "USDT",
-    "address": "0x1812B4AF939708A0C63dce7D96A843e71E1BC784"
+    "address": "0x1812B4AF939708A0C63dce7D96A843e71E1BC784",
+    "decimals": 18
   },
   {
     "name": "USDTBEP-20",
     "symbol": "USDTBEP",
-    "address": "0xA719249CcAFa164B9A98D3BBC7E57C5FFDF6f5B8"
+    "address": "0xA719249CcAFa164B9A98D3BBC7E57C5FFDF6f5B8",
+    "decimals": 18
   },
   {
     "name": "USDTBEP-20",
     "symbol": "USDTBEP",
-    "address": "0xba41bEE089878750935D6BeAfF2B2849B1610A45"
+    "address": "0xba41bEE089878750935D6BeAfF2B2849B1610A45",
+    "decimals": 18
   },
   {
     "name": "ETHBSC",
     "symbol": "ETHBSC",
-    "address": "0x91810ebE07E407dEAEe173E990aFe3aa8a7F0A0d"
+    "address": "0x91810ebE07E407dEAEe173E990aFe3aa8a7F0A0d",
+    "decimals": 18
   },
   {
     "name": "WBTC",
     "symbol": "BTC",
-    "address": "0x37018aEb879F9d88875c1ce17ae13005306Bd0aA"
+    "address": "0x37018aEb879F9d88875c1ce17ae13005306Bd0aA",
+    "decimals": 18
   },
   {
     "name": "Wrapped BTC",
     "symbol": "BTC",
-    "address": "0x78B6D5754f324db03b9206520161eA132B2c8101"
+    "address": "0x78B6D5754f324db03b9206520161eA132B2c8101",
+    "decimals": 18
   },
   {
     "name": "Tether USD",
     "symbol": "USDT",
-    "address": "0x13FA67734cb936d715A7E1DC6b5916Acaf97ECB0"
+    "address": "0x13FA67734cb936d715A7E1DC6b5916Acaf97ECB0",
+    "decimals": 18
   },
   {
     "name": "Tether USD",
     "symbol": "USDT",
-    "address": "0x1aC1866Cb31442a6641b9f314150f9fC0b377C33"
+    "address": "0x1aC1866Cb31442a6641b9f314150f9fC0b377C33",
+    "decimals": 18
   },
   {
     "name": "Teller",
     "symbol": "TELLER",
-    "address": "0xB144506e3d2771398b526974FAfAd14D76e78e43"
+    "address": "0xB144506e3d2771398b526974FAfAd14D76e78e43",
+    "decimals": 18
   },
   {
     "name": "Otoko",
     "symbol": "OTK",
-    "address": "0x65cB0fEDbA3E3157f9BB60864652168D6D7152Af"
+    "address": "0x65cB0fEDbA3E3157f9BB60864652168D6D7152Af",
+    "decimals": 18
   },
   {
     "name": "Otoko",
     "symbol": "OTK",
-    "address": "0x9b37B2Ac1a3eba853225a2515AdF7dA744dC2561"
+    "address": "0x9b37B2Ac1a3eba853225a2515AdF7dA744dC2561",
+    "decimals": 18
   },
   {
     "name": "Bitcoin BR",
     "symbol": "BTCBR",
-    "address": "0x36D89D1dD6C83343e3458d3C0Ab00a83Cc2eCD25"
+    "address": "0x36D89D1dD6C83343e3458d3C0Ab00a83Cc2eCD25",
+    "decimals": 18
   }
 ]
