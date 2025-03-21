@@ -19,3 +19,36 @@ button {
   margin-top: 20px;
   cursor: pointer;
 }
+
+.token-box {
+  background-color: #f0f0f0;
+  padding: 12px 20px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.token-box:hover {
+  background-color: #e2e2e2;
+}
+
+.buy-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buy-button:hover {
+  background-color: #0056b3;
+}
