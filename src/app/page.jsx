@@ -1,8 +1,7 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import TokenList from '../components/TokenList';
+import tokenData from '../components/tokenList.json';
 
 export default function Home() {
   const [walletAddress, setWalletAddress] = useState('');
@@ -61,7 +60,6 @@ export default function Home() {
       >
         {isConnected ? 'Wallet Connected' : 'Connect Wallet'}
       </button>
-
       {isConnected && (
         <div style={{ marginTop: '30px' }}>
           <p>Wallet: {walletAddress}</p>
@@ -69,9 +67,26 @@ export default function Home() {
         </div>
       )}
 
-      {/* Add Token List Below */}
-      <div style={{ marginTop: '40px' }}>
-        <TokenList />
+      {/* Token Display (Name + Symbol Only) */}
+      <div style={{ marginTop: '50px' }}>
+        <h2>Available Tokens</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
+          {tokenData.map((token, index) => (
+            <div
+              key={index}
+              style={{
+                backgroundColor: '#f5f5f5',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                width: '260px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                textAlign: 'left'
+              }}
+            >
+              <strong>{token.name}</strong> — {token.symbol}
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );
