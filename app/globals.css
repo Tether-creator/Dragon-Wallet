@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main {
+  background-image: url('/bg-dark.png'); /* Optional custom background image */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
