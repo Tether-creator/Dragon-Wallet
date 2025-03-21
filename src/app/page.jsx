@@ -9,7 +9,7 @@ export default function Home() {
   const [tokenData, setTokenData] = useState([]);
 
   const connectWallet = async () => {
-    if (typeof window !== 'undefined' && window.ethereum) {
+    if (typeof window.ethereum !== 'undefined') {
       try {
         const [address] = await window.ethereum.request({
           method: 'eth_requestAccounts',
@@ -45,14 +45,13 @@ export default function Home() {
   }, [walletAddress]);
 
   const handleBuy = (symbol) => {
-    alert(Buy ',',{symbol} clicked!);
-    // Hook this up to a DEX like PancakeSwap later
+    alert(Buy ${symbol} clicked!);
   };
 
   return (
     <main style={{ textAlign: 'center', marginTop: '80px' }}>
       <img
-        src="dragon-logo.png"
+        src="/dragon-logo.png"
         alt="Dragon Flash Logo"
         style={{ width: '120px', marginBottom: '20px' }}
       />
@@ -94,32 +93,21 @@ export default function Home() {
           {tokenData.map((token, index) => (
             <div
               key={index}
-              className="token-box"
               style={{
                 backgroundColor: '#f0f0f0',
                 padding: '12px 20px',
                 borderRadius: '10px',
                 width: '320px',
                 boxShadow: '0 3px 6px rgba(0,0,0,0.1)',
-                fontSize: '15px',
-                fontWeight: '500',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                transition: 'background-color 0.2s ease',
               }}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.backgroundColor = '#e2e2e2')
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.backgroundColor = '#f0f0f0')
-              }
             >
               <span>
                 {token.name} — {token.symbol}
               </span>
               <button
-                className="buy-button"
                 onClick={() => handleBuy(token.symbol)}
                 style={{
                   padding: '6px 12px',
@@ -129,14 +117,7 @@ export default function Home() {
                   border: 'none',
                   borderRadius: '6px',
                   cursor: 'pointer',
-                  transition: 'background-color 0.2s ease',
                 }}
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.backgroundColor = '#0056b3')
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.backgroundColor = '#007bff')
-                }
               >
                 Buy
               </button>
