@@ -31,7 +31,6 @@ export default function Home() {
     setBalance(ethers.formatEther(balance));
   };
 
-  // Fetch token list from public/data/tokenList.json
   useEffect(() => {
     fetch('/data/tokenList.json')
       .then((res) => res.json())
@@ -76,7 +75,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* Token Display (Only Name & Symbol with spacing) */}
       <div style={{ marginTop: '50px' }}>
         <h2>Available Tokens</h2>
         <div
@@ -94,13 +92,39 @@ export default function Home() {
                 backgroundColor: '#f0f0f0',
                 padding: '12px 20px',
                 borderRadius: '10px',
-                width: '270px',
+                width: '320px',
                 boxShadow: '0 3px 6px rgba(0,0,0,0.1)',
                 fontSize: '15px',
                 fontWeight: '500',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                transition: 'transform 0.2s ease, background-color 0.2s ease',
+                cursor: 'pointer',
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#e2e2e2')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#f0f0f0')}
             >
-              <span>{token.name}</span> — <span>{token.symbol}</span>
+              <span>
+                {token.name} — {token.symbol}
+              </span>
+              <button
+                style={{
+                  padding: '6px 12px',
+                  fontSize: '14px',
+                  backgroundColor: '#007bff',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.2s ease',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#0056b3')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#007bff')}
+                onClick={() => alert(Buy ${token.symbol})}
+              >
+                Buy
+              </button>
             </div>
           ))}
         </div>
