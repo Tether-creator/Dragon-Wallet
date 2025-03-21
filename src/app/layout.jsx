@@ -1,26 +1,15 @@
-'use client'
-import { useEffect, useState } from 'react';
+// /app/layout.js
+export const metadata = {
+  title: 'Dragon Flash Wallet',
+  description: 'Your Web3 Gateway',
+};
 
-export default function TokenList() {
-  const [tokens, setTokens] = useState([]);
-
-  useEffect(() => {
-    fetch('/data/tokenList.json')
-      .then((res) => res.json())
-      .then((data) => setTokens(data));
-  }, []);
-
+export default function RootLayout({ children }) {
   return (
-    <div>
-      <h2>Available Tokens</h2>
-      <ul>
-        {tokens.map((token, index) => (
-          <li key={index}>
-            <strong>{token.name}</strong> ({token.symbol})<br />
-            Contract: {token.address}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <html lang="en">
+      <body style={{ margin: 0, padding: 0 }}>
+        {children}
+      </body>
+    </html>
   );
 }
