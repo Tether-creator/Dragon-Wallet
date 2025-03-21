@@ -45,7 +45,7 @@ export default function Home() {
   }, [walletAddress]);
 
   const handleBuy = (symbol) => {
-    alert(Buy ${symbol} clicked!);
+    alert(Buy ',',{symbol} clicked!);
     // Hook this up to a DEX like PancakeSwap later
   };
 
