@@ -31,26 +31,19 @@ export default function Home() {
     setBalance(ethers.formatEther(balance));
   };
 
+  // Fetch token list from public/data/tokenList.json
+  useEffect(() => {
+    fetch('/data/tokenList.json')
+      .then((res) => res.json())
+      .then((data) => setTokenData(data))
+      .catch((err) => console.error('Error loading token list:', err));
+  }, []);
+
   useEffect(() => {
     if (walletAddress) {
       getBalance(walletAddress);
     }
   }, [walletAddress]);
-
-  useEffect(() => {
-    // Fetch token list from /public folder
-    const fetchTokens = async () => {
-      try {
-        const res = await fetch('/tokenList.json');
-        const data = await res.json();
-        setTokenData(data);
-      } catch (error) {
-        console.error('Failed to load token list:', error);
-      }
-    };
-
-    fetchTokens();
-  }, []);
 
   return (
     <main style={{ textAlign: 'center', marginTop: '80px' }}>
