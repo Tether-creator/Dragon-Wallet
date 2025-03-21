@@ -1,19 +1,18 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import TokenList from '../components/TokenList';
 
 export default function Home() {
   const [walletAddress, setWalletAddress] = useState('');
   const [balance, setBalance] = useState('');
   const [isConnected, setIsConnected] = useState(false);
+  const [tokenData, setTokenData] = useState([]);
 
   const connectWallet = async () => {
     if (typeof window.ethereum !== 'undefined') {
       try {
         const [address] = await window.ethereum.request({
-          method: 'eth_requestAccounts'
+          method: 'eth_requestAccounts',
         });
         setWalletAddress(address);
         setIsConnected(true);
@@ -33,6 +32,13 @@ export default function Home() {
   };
 
   useEffect(() => {
+    fetch('/data/tokenList.json')
+      .then((res) => res.json())
+      .then((data) => setTokenData(data))
+      .catch((err) => console.error('Error loading token list:', err));
+  }, []);
+
+  useEffect(() => {
     if (walletAddress) {
       getBalance(walletAddress);
     }
@@ -40,6 +46,41 @@ export default function Home() {
 
   return (
     <main style={{ textAlign: 'center', marginTop: '80px' }}>
+      <style>{
+        .token-box {
+          background-color: #f0f0f0;
+          padding: 12px 20px;
+          border-radius: 10px;
+          width: 320px;
+          box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+          font-size: 15px;
+          font-weight: 500;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: background-color 0.2s ease;
+        }
+
+        .token-box:hover {
+          background-color: #e2e2e2;
+        }
+
+        .buy-button {
+          padding: 6px 12px;
+          font-size: 14px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .buy-button:hover {
+          background-color: #0056b3;
+        }
+      }</style>
+
       <img
         src="dragon-logo.png"
         alt="Dragon Flash Logo"
@@ -56,7 +97,7 @@ export default function Home() {
           backgroundColor: '#ff9900',
           border: 'none',
           borderRadius: '6px',
-          color: '#fff'
+          color: '#fff',
         }}
       >
         {isConnected ? 'Wallet Connected' : 'Connect Wallet'}
@@ -69,9 +110,28 @@ export default function Home() {
         </div>
       )}
 
-      {/* Add Token List Below */}
-      <div style={{ marginTop: '40px' }}>
-        <TokenList />
+      <div style={{ marginTop: '50px' }}>
+        <h2>Available Tokens</h2>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+            alignItems: 'center',
+          }}
+        >
+          {tokenData.map((token, index) => (
+            <div className="token-box" key={index}>
+              <span>{token.name} — {token.symbol}</span>
+              <button
+                className="buy-button"
+                onClick={() => alert(Buy ${token.symbol})}
+              >
+                Buy
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );
